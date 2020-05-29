@@ -1,13 +1,18 @@
-import { mount } from "@vue/test-utils";
+import { render, fireEvent } from "@testing-library/vue";
 import MyButton from "@/components/MyButton";
 
 describe("MyButton", () => {
-  it("works", () => {
-    const wrapper = mount(MyButton, {
+  it("works", async () => {
+    const { getByText, emitted } = render(MyButton, {
       slots: {
         default: "Hello World"
       }
     });
-    expect(wrapper.html()).toMatchSnapshot();
+
+    const button = getByText("Hello World");
+    await fireEvent.click(button);
+
+    expect(button).toMatchSnapshot();
+    expect(emitted("click")).toMatchSnapshot();
   });
 });
