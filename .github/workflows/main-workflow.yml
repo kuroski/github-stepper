@@ -1,0 +1,22 @@
+name: Main workflow
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  testAndPublish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+
+      - name: Build
+        run: npm i
+
+      - name: Run tests
+        run: npm run test:ci
+      #
+      # TODO: Enable this line when the repo is converted to public
+      # - name: Publish Storybook
+      #   run: npm run deploy-storybook -- --ci
