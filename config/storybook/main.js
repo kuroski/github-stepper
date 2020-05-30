@@ -1,5 +1,11 @@
+const path = require("path");
+
 module.exports = {
   stories: ["../../src/**/*.stories.(js|jsx|ts|tsx|mdx)"],
+  webpackFinal: config => {
+    config.resolve.alias["@"] = path.resolve(__dirname, "..", "..", "src");
+    return config;
+  },
   addons: [
     "@storybook/addon-actions",
     {
