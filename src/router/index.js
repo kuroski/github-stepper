@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import routes from "@/router/routes";
-import i18n, { loadLocaleMessagesAsync } from "@/i18n";
+import i18n from "@/i18n";
 
 Vue.use(VueRouter);
 
@@ -19,10 +19,8 @@ router.beforeEach((to, from, next) => {
 
   const { locale } = to.params;
 
-  loadLocaleMessagesAsync(locale).then(() => {
-    document.documentElement.lang = locale;
-    document.title = i18n.t("app.title");
-  });
+  document.documentElement.lang = locale;
+  document.title = i18n.t("app.title");
 
   next();
 });
