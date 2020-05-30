@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LocalizedLink renders a router-link with current system locale 1`] = `
+<a
+  class=""
+  href="#/en/"
+>
+  My link
+</a>
+`;
