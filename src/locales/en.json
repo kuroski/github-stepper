@@ -1,3 +1,6 @@
 {
-  "message": "hello i18n !!"
+  "app.title": "Github Stepper",
+  "home.header": "Please choose one workflow format",
+  "home.optionPages": "Pages",
+  "home.optionStepper": "Stepper"
 }
