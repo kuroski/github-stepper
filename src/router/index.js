@@ -1,15 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import routes from "@/router/routes";
 
 Vue.use(VueRouter);
-
-const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue")
-  }
-];
 
 const router = new VueRouter({
   mode: "history",
