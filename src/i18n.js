@@ -3,6 +3,8 @@ import VueI18n from "vue-i18n";
 
 Vue.use(VueI18n);
 
+const loadedLanguagesCache = [];
+
 function loadLocaleMessages() {
   const locales = require.context(
     "./locales",
@@ -20,8 +22,32 @@ function loadLocaleMessages() {
   return messages;
 }
 
-export default new VueI18n({
+const i18n = new VueI18n({
   locale: process.env.VUE_APP_I18N_LOCALE || "en",
   fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || "en",
   messages: loadLocaleMessages()
 });
+
+export function loadLocaleMessagesAsync(locale) {
+  if (loadedLanguagesCache.length > 0 && i18n.locale === locale) {
+    return Promise.resolve(locale);
+  }
+
+  // If the language was already loaded
+  if (loadedLanguagesCache.includes(locale)) {
+    i18n.locale = locale;
+    return Promise.resolve(locale);
+  }
+
+  // If the language hasn't been loaded yet
+  return import(
+    /* webpackChunkName: "locale-[request]" */ `@/locales/${locale}.json`
+  ).then(messages => {
+    i18n.setLocaleMessage(locale, messages.default);
+    loadedLanguagesCache.push(locale);
+    i18n.locale = locale;
+    return Promise.resolve(locale);
+  });
+}
+
+export default i18n;
