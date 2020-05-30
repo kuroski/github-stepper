@@ -3,7 +3,7 @@
 describe("My First Test", () => {
   it("Visits the app root url", () => {
     cy.visit("/");
-    cy.findByText("Hello World").should("exist");
-    cy.contains("h1", "Hello World");
+    cy.findByText("hello i18n !!").should("exist");
+    cy.contains("h1", "hello i18n !!");
   });
 });

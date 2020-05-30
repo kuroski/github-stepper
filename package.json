@@ -5,22 +5,24 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:ci": "npm run build --report",
-    "test:ci": "run-s test:unit:ci test:e2e:ci",
     "test:unit": "vue-cli-service test:unit",
-    "test:unit:watch": "vue-cli-service test:unit --watch --notify --notifyMode change",
-    "test:unit:ci": "vue-cli-service test:unit --coverage --ci",
     "test:e2e": "vue-cli-service test:e2e",
-    "test:e2e:ci": "vue-cli-service test:e2e --headless --mode=test",
     "lint": "vue-cli-service lint",
+    "build:ci": "npm run build --report",
+    "deploy-storybook": "storybook-to-ghpages",
+    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'",
     "storybook:build": "vue-cli-service storybook:build -c config/storybook",
     "storybook:serve": "vue-cli-service storybook:serve -p 6006 -c config/storybook",
-    "deploy-storybook": "storybook-to-ghpages"
+    "test:ci": "run-s test:unit:ci test:e2e:ci",
+    "test:e2e:ci": "vue-cli-service test:e2e --headless --mode=test",
+    "test:unit:ci": "vue-cli-service test:unit --coverage --ci",
+    "test:unit:watch": "vue-cli-service test:unit --watch --notify --notifyMode change"
   },
   "dependencies": {
     "core-js": "^3.6.5",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
+    "vue-i18n": "^8.17.3",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
   },
@@ -51,6 +53,7 @@
     "eslint-plugin-vue": "^6.2.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
+    "vue-cli-plugin-i18n": "~1.0.1",
     "vue-cli-plugin-storybook": "~1.2.2",
     "vue-template-compiler": "^2.6.11"
   }
