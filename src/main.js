@@ -10,6 +10,10 @@ Vue.config.productionTip = false;
 
 Vue.use(Vuelidate);
 
+if (process.env.NODE_ENV !== "production") {
+  Vue.use(import("vue-axe"));
+}
+
 new Vue({
   router,
   store,

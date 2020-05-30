@@ -8,6 +8,7 @@ module.exports = {
     "plugin:vue/essential",
     "eslint:recommended",
     "@vue/prettier",
+    "plugin:vuejs-accessibility/recommended"
   ],
   parserOptions: {
     parser: "babel-eslint",
@@ -29,5 +30,5 @@ module.exports = {
       },
     },
   ],
-  plugins: ["testing-library"],
+  plugins: ["testing-library", "vuejs-accessibility"],
 };
