@@ -2,18 +2,23 @@
   <div>
     <h1>{{ $t("home.header") }}</h1>
 
-    <router-link :to="{ name: 'workflow-pages' }">
+    <LocalizedLink :to="{ name: 'workflow-pages-introduction' }">
       {{ $t("home.optionPages") }}
-    </router-link>
+    </LocalizedLink>
 
-    <router-link :to="{ name: 'workflow-stepper' }">
+    <LocalizedLink :to="{ name: 'workflow-stepper' }">
       {{ $t("home.optionStepper") }}
-    </router-link>
+    </LocalizedLink>
   </div>
 </template>
 
 <script>
+import LocalizedLink from "@/components/LocalizedLink";
+
 export default {
-  name: "Home"
+  name: "Home",
+  components: {
+    LocalizedLink
+  },
 };
 </script>
