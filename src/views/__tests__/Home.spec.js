@@ -1,4 +1,3 @@
-// import { render } from "@testing-library/vue";
 import { renderWithDependencies } from "@unit/helpers";
 import Home from "@/views/Home";
 
