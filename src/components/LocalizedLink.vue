@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="toWithLocale">
+  <router-link :to="toWithLocale" v-bind="$attrs">
     <slot />
   </router-link>
 </template>
