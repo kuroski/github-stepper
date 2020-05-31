@@ -33,3 +33,9 @@ export const renderWithDependencies = (
     };
   });
 };
+
+export const createEvent = name => {
+  const evt = document.createEvent("Event");
+  evt.initEvent(name, true, true);
+  return evt;
+};
