@@ -1,18 +1,14 @@
 import Vue from "vue";
-import Vuelidate from "vuelidate";
 import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
 import i18n from "./i18n";
+import registerPlugins from "@/plugins";
 
 Vue.config.productionTip = false;
 
-Vue.use(Vuelidate);
-
-if (process.env.NODE_ENV !== "production") {
-  Vue.use(import("vue-axe"));
-}
+registerPlugins(store);
 
 new Vue({
   router,
