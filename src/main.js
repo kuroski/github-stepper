@@ -14,5 +14,8 @@ new Vue({
   router,
   store,
   i18n,
+  created() {
+    this.$store.dispatch("workflow/init");
+  },
   render: h => h(App)
 }).$mount("#app");

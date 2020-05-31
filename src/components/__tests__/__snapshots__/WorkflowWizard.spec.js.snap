@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WorkflowWizard renders a empty list of steps 1`] = `<div data-testid="workflow-wizard"></div>`;
