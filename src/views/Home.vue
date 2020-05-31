@@ -20,5 +20,8 @@ export default {
   components: {
     LocalizedLink
   },
+  created() {
+    this.$store.commit("workflow/resetState");
+  }
 };
 </script>
