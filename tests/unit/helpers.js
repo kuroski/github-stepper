@@ -2,6 +2,7 @@ import { render } from "@testing-library/vue";
 import registerPlugins from "@/plugins";
 import i18n from "@/i18n";
 import routes from "@/router/routes";
+import workflow from "@/store/workflow";
 
 export const renderWithDependencies = (
   component,
@@ -38,4 +39,13 @@ export const createEvent = name => {
   const evt = document.createEvent("Event");
   evt.initEvent(name, true, true);
   return evt;
+};
+
+export const flushPromises = () => {
+  const scheduler =
+    typeof setImmediate === "function" ? setImmediate : setTimeout;
+
+  return new Promise(function(resolve) {
+    scheduler(resolve);
+  });
 };
