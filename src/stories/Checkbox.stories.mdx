@@ -1,0 +1,42 @@
+import { Meta, Props, Story, Preview } from "@storybook/addon-docs/blocks";
+import { action } from "@storybook/addon-actions";
+import { linkTo } from "@storybook/addon-links";
+import Checkbox from "../components/Checkbox.vue";
+
+<Meta title="Components|Checkbox" component={Checkbox} />
+
+# Button
+
+<Props of={Checkbox} />
+
+Basic checkbox field.
+
+<Preview>
+  <Story name="Basic">
+    {{
+      components: { Checkbox },
+      data: () => ({
+        terms: false,
+      }),
+      template: `<Checkbox id="terms" label="Accept our terms and conditions" v-model="terms" required />`,
+    }}
+  </Story>
+</Preview>
+
+With errors
+
+<Preview>
+  <Story name="With errors">
+    {{
+      components: { Checkbox },
+      data: () => ({
+        terms: true,
+        errors: [
+          "This field is required",
+          "This field is with the incorrect format",
+        ],
+      }),
+      template: `<Checkbox id="terms" label="Accept our terms and conditions" v-model="terms" :error-messages="errors" required />`,
+    }}
+  </Story>
+</Preview>

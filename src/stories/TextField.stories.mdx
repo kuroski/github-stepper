@@ -1,0 +1,56 @@
+import { Meta, Props, Story, Preview } from "@storybook/addon-docs/blocks";
+import { action } from "@storybook/addon-actions";
+import { linkTo } from "@storybook/addon-links";
+import TextField from "../components/TextField.vue";
+
+<Meta title="Components|Text field" component={TextField} />
+
+# Button
+
+<Props of={TextField} />
+
+Basic text input.
+
+<Preview>
+  <Story name="Basic">
+    {{
+      components: { TextField },
+      data: () => ({
+        name: "",
+      }),
+      template: `<TextField id="name" label="Name" v-model="name" required />`,
+    }}
+  </Story>
+</Preview>
+
+In loading state
+
+<Preview>
+  <Story name="With loading state">
+    {{
+      components: { TextField },
+      data: () => ({
+        name: "",
+      }),
+      template: `<TextField id="name" label="Name" v-model="name" required loading />`,
+    }}
+  </Story>
+</Preview>
+
+With errors
+
+<Preview>
+  <Story name="With errors">
+    {{
+      components: { TextField },
+      data: () => ({
+        name: "",
+        errors: [
+          "This field is required",
+          "This field is with the incorrect format",
+        ],
+      }),
+      template: `<TextField id="name" label="Name" v-model="name" :error-messages="errors" required loading />`,
+    }}
+  </Story>
+</Preview>

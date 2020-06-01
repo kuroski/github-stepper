@@ -1,0 +1,22 @@
+import { Meta, Props, Story, Preview } from "@storybook/addon-docs/blocks";
+import { action } from "@storybook/addon-actions";
+import { linkTo } from "@storybook/addon-links";
+import TermsForm from "../components/TermsForm.vue";
+
+<Meta title="Form|Term form" component={TermsForm} />
+
+# Button
+
+<Props of={TermsForm} />
+
+This is the basic version of the second form of the workflow
+
+<Preview>
+  <Story name="All">
+    {{
+      components: { TermsForm },
+      template: '<TermsForm @submit="action" />',
+      methods: { action: action("submitted") },
+    }}
+  </Story>
+</Preview>

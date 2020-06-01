@@ -1,0 +1,42 @@
+import { Meta, Props, Story, Preview } from "@storybook/addon-docs/blocks";
+import { action } from "@storybook/addon-actions";
+import { linkTo } from "@storybook/addon-links";
+import WorkflowWizard from "../components/WorkflowWizard.vue";
+
+<Meta title="Workflow|Wizard" component={WorkflowWizard} />
+
+# Button
+
+<Props of={WorkflowWizard} />
+
+A navigation indicator component.
+
+<Preview>
+  <Story name="Basic">
+    {{
+      components: { WorkflowWizard },
+      computed: {
+        steps() {
+          return [
+            {
+              title: "Step 1 title",
+              link: "home",
+              disabled: false,
+            },
+            {
+              title: "Step 2 title",
+              link: "home",
+              disabled: false,
+            },
+            {
+              title: "Step 3 title - disabled field",
+              link: "home",
+              disabled: true,
+            },
+          ];
+        },
+      },
+      template: `<WorkflowWizard :steps="steps" />`,
+    }}
+  </Story>
+</Preview>

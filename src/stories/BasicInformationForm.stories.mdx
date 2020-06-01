@@ -1,0 +1,22 @@
+import { Meta, Props, Story, Preview } from "@storybook/addon-docs/blocks";
+import { action } from "@storybook/addon-actions";
+import { linkTo } from "@storybook/addon-links";
+import BasicInformationForm from "../components/BasicInformationForm.vue";
+
+<Meta title="Form|Basic information form" component={BasicInformationForm} />
+
+# Button
+
+<Props of={BasicInformationForm} />
+
+This is the basic version of the first form of the workflow
+
+<Preview>
+  <Story name="All">
+    {{
+      components: { BasicInformationForm },
+      template: '<BasicInformationForm @submit="action" />',
+      methods: { action: action("submitted") },
+    }}
+  </Story>
+</Preview>

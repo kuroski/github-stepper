@@ -1,0 +1,23 @@
+import { Meta, Props, Story, Preview } from "@storybook/addon-docs/blocks";
+import { action } from "@storybook/addon-actions";
+import { linkTo } from "@storybook/addon-links";
+import LocalizedLink from "../components/LocalizedLink.vue";
+
+<Meta title="Components|Localized link" component={LocalizedLink} />
+
+# Button
+
+<Props of={LocalizedLink} />
+
+This is a wrapper on top of the `router-link` component.
+
+This component will automatically inject the `locale` in all urls.
+
+<Preview>
+  <Story name="All">
+    {{
+      components: { LocalizedLink },
+      template: `<LocalizedLink :to="{ name: 'home' }">My link</LocalizedLink>`,
+    }}
+  </Story>
+</Preview>
