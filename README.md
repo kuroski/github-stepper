@@ -1,5 +1,7 @@
 # Introduction
 
+![GitHub Workflow Status](https://github.com/kuroski/github-stepper/workflows/Main%20workflow/badge.svg)
+
 This is a project where a user provide basic informations in a flow and in the end it is presented a Github profile page.
 
 ## Project setup
