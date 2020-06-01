@@ -4,6 +4,8 @@
 
 This is a project where a user provide basic informations in a flow and in the end it is presented a Github profile page.
 
+[Storybook link](https://kuroski.github.io/github-stepper/storybook-static/)
+
 ## Project setup
 
 ```
