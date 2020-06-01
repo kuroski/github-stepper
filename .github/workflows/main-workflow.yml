@@ -16,7 +16,6 @@ jobs:
 
       - name: Run tests
         run: npm run test:ci
-      #
-      # TODO: Enable this line when the repo is converted to public
-      # - name: Publish Storybook
-      #   run: npm run deploy-storybook -- --ci
+
+      - name: Publish Storybook
+        run: npm run deploy-storybook -- --ci
