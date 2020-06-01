@@ -24,6 +24,30 @@ describe("directive: debounce", () => {
     expect(fn).toHaveBeenCalledWith("Foo Fighters is awesome!");
   });
 
+  it("binds to child input", () => {
+    // arrange
+    jest.useFakeTimers();
+
+    const fn = jest.fn();
+    const element = document.createElement("label");
+    const input = document.createElement("input");
+    element.appendChild(input);
+    debounce.bind(element, { value: fn, arg: 600 });
+
+    // act
+    input.dispatchEvent(createEvent("keyup"));
+    input.value = "Foo Fighters is awesome!";
+
+    // assert
+    expect(fn).not.toHaveBeenCalled();
+    jest.advanceTimersByTime(500);
+    expect(fn).not.toHaveBeenCalled();
+    jest.advanceTimersByTime(700);
+
+    expect(fn).toHaveBeenCalledTimes(1);
+    expect(fn).toHaveBeenCalledWith("Foo Fighters is awesome!");
+  });
+
   it("unbinds the directive", () => {
     jest.useFakeTimers();
 

@@ -1,30 +1,35 @@
 <template>
   <form @submit.prevent="validateAndSubmit">
-    <label for="email">
-      {{ $t("workflow.terms.email") }} {{ $t("mandatory") }}
-      <input
-        id="email"
-        v-model="$v.email.$model"
-        type="email"
-        aria-required="true"
-      />
-      <div v-if="emailErrors.length">
-        <small v-for="error in emailErrors" :key="error">{{ error }}</small>
-      </div>
-    </label>
+    <h2 class="mb-5">{{ $t("workflow.terms.title") }}</h2>
 
-    <label for="confirmed">
-      {{ $t("workflow.terms.confirmed") }}
-      <input
-        id="confirmed"
-        v-model="$v.confirmed.$model"
-        type="checkbox"
-        aria-required="true"
-      />
-      <div v-if="confirmedErrors.length">
-        <small v-for="error in confirmedErrors" :key="error">{{ error }}</small>
-      </div>
-    </label>
+    <TextField
+      id="email"
+      v-model="$v.email.$model"
+      :label="$t('workflow.terms.email')"
+      :error-messages="emailErrors"
+      :placeholder="$t('workflow.terms.emailPlaceholder')"
+      required
+    />
+
+    <Checkbox
+      id="confirmed"
+      v-model="$v.confirmed.$model"
+      class="mt-5"
+      type="checkbox"
+      :label="$t('workflow.terms.confirmed')"
+      :error-messages="confirmedErrors"
+      required
+    >
+      <a
+        href="https://ml9gky9zgaiw.i.optimole.com/o9RT94U-uj1dSAli/w:600/h:450/q:auto/https://www.chango.ca/wp-content/uploads/2019/09/spotify-spying.jpg"
+        :aria-label="$t('workflow.terms.conditionLink')"
+        target="_blank"
+        class="ml-2"
+      >
+        <LinkIcon aria-hidden="true" />
+        <span>{{ $t("link") }}</span>
+      </a>
+    </Checkbox>
 
     <WorkflowActions :back-to="{ name: 'workflow-pages-basic-information' }">
       <button class="btn btn--primary" type="submit" :disabled="$v.$anyError">
@@ -38,11 +43,17 @@
 import { mapState } from "vuex";
 import { required, email } from "vuelidate/lib/validators";
 import WorkflowActions from "@/components/WorkflowActions";
+import TextField from "@/components/TextField";
+import Checkbox from "@/components/Checkbox";
+import LinkIcon from "vue-material-design-icons/Link";
 
 export default {
   name: "WorkflowBasicInformation",
   components: {
-    WorkflowActions
+    WorkflowActions,
+    TextField,
+    Checkbox,
+    LinkIcon
   },
   validations: {
     email: {
@@ -70,19 +81,8 @@ export default {
     emailErrors() {
       const errors = [];
       if (!this.$v.email.$dirty) return errors;
-      const field = this.$t("workflow.terms.email");
-      !this.$v.email.required &&
-        errors.push(
-          this.$t("validation.required", {
-            field
-          })
-        );
-      !this.$v.email.email &&
-        errors.push(
-          this.$t("validation.email", {
-            field
-          })
-        );
+      !this.$v.email.required && errors.push(this.$t("validation.required"));
+      !this.$v.email.email && errors.push(this.$t("validation.email"));
       return errors;
     },
     confirmed: {

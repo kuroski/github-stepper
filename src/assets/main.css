@@ -11,6 +11,10 @@
 
   --color-purple-600: #805ad5;
 
+  --color-gray-500: #a0aec0;
+
+  --color-red-600: #e53e3e;
+
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -63,6 +67,10 @@ html {
   }
 }
 
+.rounded {
+  border-radius: 0.25rem;
+}
+
 .rounded-lg {
   border-radius: 0.5rem;
 }
@@ -75,6 +83,26 @@ html {
   transition-property: var(--transition-all);
   transition-duration: var(--duration-300);
   transition-timing-function: var(--ease-in-out);
+}
+
+.mt-5 {
+  margin-top: var(--space-5);
+}
+
+.mb-5 {
+  margin-bottom: var(--space-5);
+}
+
+.ml-2 {
+  margin-left: var(--space-2);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 a {
@@ -90,6 +118,10 @@ a:visited {
 
 a:hover {
   color: var(--color-blue-800);
+}
+
+label {
+  cursor: pointer;
 }
 
 .btn {

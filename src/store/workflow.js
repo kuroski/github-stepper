@@ -63,6 +63,7 @@ export default {
       Vue.set(state.basicInformation, "lastName", payload);
     },
     setBasicInformationUsername(state, payload) {
+      Vue.set(state, "github", {});
       Vue.set(state.basicInformation, "username", payload);
     },
     setBasicInformationValidationErrors(state, payload) {

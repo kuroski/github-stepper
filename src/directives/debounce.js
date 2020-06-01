@@ -28,6 +28,17 @@ export default {
       value(target.value);
     }, arg);
 
+    if (el.tagName.toLocaleUpperCase() !== "INPUT") {
+      const els = el.getElementsByTagName("input");
+      if (els.length !== 1) {
+        throw new Error(
+          "v-debounce directive requires 1 input, found " + els.length
+        );
+      } else {
+        el = els[0];
+      }
+    }
+
     el.__debounce_listener__ = ({ key, target }) => {
       if (key !== "Enter") return fn(target);
 

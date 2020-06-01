@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox renders a regular input 1`] = `
+<div class="checkbox"><label for="terms" class="checkbox__content"><input id="terms" type="checkbox" value="false"> <span>Do you aceept our terms?</span> </label>
+  <!---->
+</div>
+`;

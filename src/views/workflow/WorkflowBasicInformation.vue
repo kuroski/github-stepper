@@ -1,45 +1,35 @@
 <template>
   <form @submit.prevent="validateAndSubmit">
-    <label for="firstName">
-      {{ $t("workflow.basicInformation.firstName") }} {{ $t("mandatory") }}
-      <input
-        id="firstName"
-        v-model="$v.firstName.$model"
-        type="text"
-        aria-required="true"
-      />
-      <div v-if="firstNameErrors.length">
-        <small v-for="error in firstNameErrors" :key="error">{{ error }}</small>
-      </div>
-    </label>
+    <h2 class="mb-5">{{ $t("workflow.basicInformation.title") }}</h2>
 
-    <label for="lastName">
-      {{ $t("workflow.basicInformation.lastName") }} {{ $t("mandatory") }}
-      <input
-        id="lastName"
-        v-model="$v.lastName.$model"
-        type="text"
-        aria-required="true"
-      />
-      <div v-if="lastNameErrors.length">
-        <small v-for="error in lastNameErrors" :key="error">{{ error }}</small>
-      </div>
-    </label>
+    <TextField
+      id="firstName"
+      v-model="$v.firstName.$model"
+      :label="$t('workflow.basicInformation.firstName')"
+      :error-messages="firstNameErrors"
+      :placeholder="$t('workflow.basicInformation.firstNamePlaceholder')"
+      required
+    />
 
-    <label for="username">
-      {{ $t("workflow.basicInformation.username") }} {{ $t("mandatory") }}
-      <input
-        id="username"
-        v-model.trim="$v.username.$model"
-        v-debounce="validateGithubUser"
-        type="text"
-        aria-required="true"
-      />
-      <small v-if="isPendingGithubUserSearch">{{ $t("loading") }}</small>
-      <div v-if="usernameErrors.length">
-        <small v-for="error in usernameErrors" :key="error">{{ error }}</small>
-      </div>
-    </label>
+    <TextField
+      id="lastName"
+      v-model="$v.lastName.$model"
+      :label="$t('workflow.basicInformation.lastName')"
+      :error-messages="lastNameErrors"
+      :placeholder="$t('workflow.basicInformation.lastNamePlaceholder')"
+      required
+    />
+
+    <TextField
+      id="username"
+      v-model="$v.username.$model"
+      v-debounce="validateGithubUser"
+      :label="$t('workflow.basicInformation.username')"
+      :error-messages="usernameErrors"
+      :placeholder="$t('workflow.basicInformation.usernamePlaceholder')"
+      :loading="isPendingGithubUserSearch"
+      required
+    />
 
     <WorkflowActions :back-to="{ name: 'workflow-pages-introduction' }">
       <button class="btn btn--primary" type="submit" :disabled="$v.$anyError">
@@ -53,11 +43,13 @@
 import { mapGetters, mapActions } from "vuex";
 import { required } from "vuelidate/lib/validators";
 import WorkflowActions from "@/components/WorkflowActions";
+import TextField from "@/components/TextField";
 
 export default {
   name: "WorkflowBasicInformation",
   components: {
-    WorkflowActions
+    WorkflowActions,
+    TextField
   },
   validations: {
     firstName: {
@@ -90,11 +82,7 @@ export default {
       const errors = [];
       if (!this.$v.firstName.$dirty) return errors;
       !this.$v.firstName.required &&
-        errors.push(
-          this.$t("validation.required", {
-            field: this.$t("workflow.basicInformation.firstName")
-          })
-        );
+        errors.push(this.$t("validation.required"));
       return errors;
     },
     lastName: {
@@ -108,12 +96,7 @@ export default {
     lastNameErrors() {
       const errors = [];
       if (!this.$v.lastName.$dirty) return errors;
-      !this.$v.lastName.required &&
-        errors.push(
-          this.$t("validation.required", {
-            field: this.$t("workflow.basicInformation.lastName")
-          })
-        );
+      !this.$v.lastName.required && errors.push(this.$t("validation.required"));
       return errors;
     },
     username: {
@@ -127,13 +110,7 @@ export default {
     usernameErrors() {
       const errors = [];
       if (!this.$v.username.$dirty) return errors;
-      const field = this.$t("workflow.basicInformation.username");
-      !this.$v.username.required &&
-        errors.push(
-          this.$t("validation.required", {
-            field
-          })
-        );
+      !this.$v.username.required && errors.push(this.$t("validation.required"));
       !this.$v.username.exists &&
         errors.push(this.$t("validation.unexistingUser"));
       return errors;

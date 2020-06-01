@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextField renders a regular input 1`] = `
+<label for="name" class="text-field"><span>Name:</span> <input id="name" type="text" class="shadow rounded">
+  <!---->
+  <!----></label>
+`;

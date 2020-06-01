@@ -49,7 +49,7 @@ describe("WorkflowBasicInformation", () => {
 
   it("displays form validation errors", async () => {
     jest.useFakeTimers();
-    const { getByLabelText, getByText } = renderWithDependencies(
+    const { getByLabelText, getByText, getAllByText } = renderWithDependencies(
       WorkflowBasicInformation
     );
 
@@ -68,12 +68,11 @@ describe("WorkflowBasicInformation", () => {
 
     await fireEvent.submit(submitButton);
 
+    const formErrors = getAllByText("The field is required");
+
     expect(axiosMock.$get).toHaveBeenCalledTimes(1);
-    expect(getByText("The field 'First name' is required")).toBeInTheDocument();
-    expect(getByText("The field 'Last name' is required")).toBeInTheDocument();
-    expect(
-      getByText("The field 'Github username' is required")
-    ).toBeInTheDocument();
+    expect(formErrors).toHaveLength(3);
+    formErrors.forEach(element => expect(element).toBeInTheDocument());
     expect(
       getByText("The informed Github user doesn't exist")
     ).toBeInTheDocument();

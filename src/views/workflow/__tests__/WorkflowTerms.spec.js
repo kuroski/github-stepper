@@ -7,7 +7,9 @@ describe("WorkflowTerms", () => {
     const { getByLabelText, getByText } = renderWithDependencies(WorkflowTerms);
 
     const emailInput = getByLabelText("E-mail (mandatory)");
-    const confirmedCheckbox = getByLabelText("I agree with terms and services");
+    const confirmedCheckbox = getByText(
+      "Do you accept the terms and conditions?"
+    );
     const submitButton = getByText("Submit");
 
     await fireEvent.update(emailInput, "dave.grohl@bla.com");
@@ -26,15 +28,15 @@ describe("WorkflowTerms", () => {
 
     await fireEvent.submit(submitButton);
 
-    expect(getByText("The field 'E-mail' is required")).toBeInTheDocument();
+    expect(getByText("The field is required")).toBeInTheDocument();
 
     await fireEvent.update(emailInput, "dave.grohl");
 
     expect(
-      getByText("The field 'E-mail' is with a incorrect format")
+      getByText("The field is with a incorrect format")
     ).toBeInTheDocument();
     expect(
-      getByText("You need to accept our terms and conditions")
+      getByText("Do you accept the terms and conditions?")
     ).toBeInTheDocument();
   });
 });
