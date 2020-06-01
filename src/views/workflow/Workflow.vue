@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="workflow shadow rounded-lg">
     <WorkflowWizard :steps="steps" />
-    <router-view />
+    <router-view class="workflow__content" />
   </div>
 </template>
 
@@ -39,9 +39,30 @@ export default {
           disabled:
             this.terms.validationErrors &&
             this.$route.name !== "workflow-pages-terms"
+        },
+        {
+          title: this.$t("workflow.profile.title"),
+          link: "workflow-pages-profile",
+          disabled:
+            this.terms.validationErrors &&
+            this.$route.name !== "workflow-pages-profile"
         }
       ];
     }
   }
 };
 </script>
+
+<style scoped>
+.workflow {
+  background-color: white;
+  overflow: hidden;
+  max-width: 32rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.workflow__content {
+  padding: var(--space-5) var(--space-8);
+}
+</style>

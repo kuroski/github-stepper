@@ -5,23 +5,33 @@
       {{ $t("workflow.introduction.description") }}
     </p>
 
-    <LocalizedLink :to="{ name: 'home' }">
-      {{ $t("workflow.back") }}
-    </LocalizedLink>
-
-    <LocalizedLink :to="{ name: 'workflow-pages-basic-information' }">
-      {{ $t("workflow.next") }}
-    </LocalizedLink>
+    <WorkflowActions :back-to="{ name: 'home' }">
+      <LocalizedLink
+        :to="{ name: 'workflow-pages-basic-information' }"
+        type="primary"
+      >
+        {{ $t("workflow.next") }}
+      </LocalizedLink>
+    </WorkflowActions>
   </div>
 </template>
 
 <script>
 import LocalizedLink from "@/components/LocalizedLink";
+import WorkflowActions from "@/components/WorkflowActions";
 
 export default {
   name: "WorkflowIntroduction",
   components: {
-    LocalizedLink
+    LocalizedLink,
+    WorkflowActions
   }
 };
 </script>
+
+<style scoped>
+h1 {
+  margin-top: 0;
+  margin-bottom: var(--space-5);
+}
+</style>

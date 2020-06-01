@@ -1,0 +1,131 @@
+:root {
+  --color-blue-100: #ebf8ff;
+  --color-blue-200: #bee3f8;
+  --color-blue-300: #90cdf4;
+  --color-blue-400: #63b3ed;
+  --color-blue-500: #4299e1;
+  --color-blue-600: #3182ce;
+  --color-blue-700: #2b6cb0;
+  --color-blue-800: #2c5282;
+  --color-blue-900: #2a4365;
+
+  --color-purple-600: #805ad5;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 4rem;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+
+  --font-light: 300;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  --xs: 420px;
+  --sm: 640px;
+  --md: 768px;
+  --lg: 1024px;
+  --xl: 1280px;
+
+  --transition-all: background-color, border-color, color, fill, stroke, opacity,
+    box-shadow, transform;
+  --duration-300: 300ms;
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  font-family: Inter var, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  background-color: var(--color-blue-100);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (min-width: var(--xs)) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.shadow {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.transition {
+  transition-property: var(--transition-all);
+  transition-duration: var(--duration-300);
+  transition-timing-function: var(--ease-in-out);
+}
+
+a {
+  color: var(--color-blue-600);
+  transition-property: var(--transition-all);
+  transition-duration: var(--duration-300);
+  transition-timing-function: var(--ease-in-out);
+}
+
+a:visited {
+  color: var(--color-purple-600);
+}
+
+a:hover {
+  color: var(--color-blue-800);
+}
+
+.btn {
+  appearance: none;
+  text-decoration: none;
+  padding: var(--space-2) var(--space-4);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  border: solid 1px var(--color-blue-100);
+}
+
+.btn--primary,
+.btn--primary:visited,
+.btn--primary:disabled:hover {
+  color: var(--color-blue-100);
+  background-color: var(--color-blue-700);
+}
+
+.btn:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.btn--primary:hover {
+  background-color: var(--color-blue-800);
+}
+
+.btn--secondary,
+.btn--secondary:visited,
+.btn--secondary:disabled:hover {
+  color: var(--color-blue-800);
+  background-color: var(--color-blue-100);
+}
+
+.btn--secondary:hover {
+  background-color: var(--color-blue-200);
+}

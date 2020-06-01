@@ -14,6 +14,7 @@ export default {
     "home.header": "Please choose one workflow format",
     "home.optionPages": "Pages",
     "home.optionStepper": "Stepper",
+    "workflow.backToHomePage": "Back to home page",
     "workflow.back": "Back",
     "workflow.next": "Next",
     "workflow.submit": "Submit",
@@ -27,6 +28,7 @@ export default {
     "workflow.terms.title": "Terms and conditions",
     "workflow.terms.email": "E-mail",
     "workflow.terms.confirmed": "I agree with terms and services",
-    "workflow.profile.link": "Go to profile"
+    "workflow.profile.title": "Profile",
+    "workflow.profile.link": "Go to {username}'s profile"
   }
 };

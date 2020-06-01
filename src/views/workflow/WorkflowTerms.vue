@@ -26,25 +26,23 @@
       </div>
     </label>
 
-    <LocalizedLink :to="{ name: 'workflow-pages-basic-information' }">
-      {{ $t("workflow.back") }}
-    </LocalizedLink>
-
-    <button type="submit" :disabled="$v.$anyError">
-      {{ $t("workflow.submit") }}
-    </button>
+    <WorkflowActions :back-to="{ name: 'workflow-pages-basic-information' }">
+      <button class="btn btn--primary" type="submit" :disabled="$v.$anyError">
+        {{ $t("workflow.submit") }}
+      </button>
+    </WorkflowActions>
   </form>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import { required, email } from "vuelidate/lib/validators";
-import LocalizedLink from "@/components/LocalizedLink";
+import WorkflowActions from "@/components/WorkflowActions";
 
 export default {
   name: "WorkflowBasicInformation",
   components: {
-    LocalizedLink
+    WorkflowActions
   },
   validations: {
     email: {

@@ -15,7 +15,7 @@ describe("WorkflowWizard", () => {
   it("renders a list of steps", () => {
     const routes = [
       {
-        path: "/",
+        path: "/en",
         name: "step-1"
       },
       {
@@ -46,7 +46,7 @@ describe("WorkflowWizard", () => {
     const step2 = getByText("Step 2");
 
     expect(step1).toBeInTheDocument();
-    expect(step1).toHaveAttribute("href", "#/");
+    expect(step1).toHaveAttribute("href", "#/en");
     expect(step1).toHaveClass("workflow-wizzard__step--active");
 
     expect(step2).toBeInTheDocument();

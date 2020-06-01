@@ -1,3 +1,6 @@
+import "normalize.css";
+import "vue-material-design-icons/styles.css";
+import "@/assets/main.css";
 import Vue from "vue";
 import App from "./App.vue";
 import "./registerServiceWorker";
