@@ -9,6 +9,8 @@ export default {
     mandatory: "(mandatory)",
     loading: "Loading...",
     link: "Link",
+    "404.description": "Oops, this page doesn't exist",
+    "404.backButton": "Go back to the home page",
     "validation.required": "The field is required",
     "validation.requiredTerm": "You need to accept our terms and conditions",
     "validation.email": "The field is with a incorrect format",
