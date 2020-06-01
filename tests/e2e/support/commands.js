@@ -24,3 +24,35 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 import "@testing-library/cypress/add-commands";
+
+Cypress.Commands.add("performWorkflow", () => {
+  cy.server()
+    .route("GET", "https://api.github.com/users/**")
+    .as("githubRequest");
+
+  cy.get(".btn--primary").click();
+
+  cy.get("#firstName").type("Daniel");
+  cy.get("#lastName").type("Kuroski");
+  cy.get("#username").type("kuroski");
+
+  cy.wait("@githubRequest")
+    .its("status")
+    .should("be", 200);
+
+  cy.get(".btn--primary").click();
+
+  cy.get("#email").type("daniel.kuroski@bla.com");
+  cy.get("#confirmed").click();
+
+  cy.get(".btn--primary").click();
+
+  cy.get("[data-testid=profile]")
+    .should("contain.text", "Daniel Kuroski")
+    .and("contain.text", "daniel.kuroski@bla.com");
+
+  cy.get("[data-testid=profile]").should("have.descendants", "img");
+  cy.get("[data-testid=profile] a")
+    .should("have.attr", "href")
+    .and("include", "https://github.com/kuroski");
+});

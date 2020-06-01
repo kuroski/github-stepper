@@ -6,11 +6,14 @@
 
     <h1>{{ $t("home.header") }}</h1>
 
-    <LocalizedLink :to="{ name: 'workflow-pages-introduction' }">
+    <LocalizedLink
+      :to="{ name: 'workflow-pages-introduction' }"
+      data-testid="pages-button"
+    >
       {{ $t("home.optionPages") }} <ChevronRightIcon decorative />
     </LocalizedLink>
 
-    <LocalizedLink :to="{ name: 'stepper' }">
+    <LocalizedLink :to="{ name: 'stepper' }" data-testid="stepper-button">
       {{ $t("home.optionStepper") }} <ChevronRightIcon decorative />
     </LocalizedLink>
   </div>

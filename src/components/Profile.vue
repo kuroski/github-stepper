@@ -1,5 +1,5 @@
 <template>
-  <div class="profile">
+  <div class="profile" data-testid="profile">
     <div class="profile__card">
       <img :src="profilePicture" :alt="profile.login" class="rounded-lg" />
       <div class="profile__card-content">
