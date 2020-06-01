@@ -15,8 +15,13 @@ export default [
       {
         path: "",
         name: "home",
+        component: () => import(/* webpackChunkName: "home" */ "@/views/Home")
+      },
+      {
+        path: i18n.t("routes.stepper"),
+        name: "stepper",
         component: () =>
-          import(/* webpackChunkName: "home" */ "@/views/Home.vue")
+          import(/* webpackChunkName: "stepper" */ "@/views/Stepper")
       },
       {
         path: i18n.t("routes.workflow"),

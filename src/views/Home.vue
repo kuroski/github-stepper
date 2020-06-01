@@ -10,7 +10,7 @@
       {{ $t("home.optionPages") }} <ChevronRightIcon decorative />
     </LocalizedLink>
 
-    <LocalizedLink :to="{ name: 'workflow-stepper' }">
+    <LocalizedLink :to="{ name: 'stepper' }">
       {{ $t("home.optionStepper") }} <ChevronRightIcon decorative />
     </LocalizedLink>
   </div>

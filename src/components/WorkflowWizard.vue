@@ -1,9 +1,9 @@
 <template>
   <nav class="workflow-wizard" data-testid="workflow-wizard">
     <div v-for="step in steps" :key="step.link">
-      <span v-if="step.disabled" class="workflow-wizard__step">{{
-        step.title
-      }}</span>
+      <span v-if="step.disabled" class="workflow-wizard__step">
+        {{ step.title }}
+      </span>
       <LocalizedLink
         v-else
         class="workflow-wizard__step"

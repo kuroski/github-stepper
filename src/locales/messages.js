@@ -5,6 +5,7 @@ export default {
     "routes.workflow.basicInformation": "basic-informations",
     "routes.workflow.terms": "terms-and-conditions",
     "routes.workflow.profile": "profile",
+    "routes.stepper": "stepper",
     mandatory: "(mandatory)",
     loading: "Loading...",
     link: "Link",

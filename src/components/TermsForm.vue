@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="validateAndSubmit">
+  <form @submit.prevent="submitForm">
     <h2 class="mb-5">{{ $t("workflow.terms.title") }}</h2>
 
     <TextField
@@ -31,30 +31,41 @@
       </a>
     </Checkbox>
 
-    <WorkflowActions :back-to="{ name: 'workflow-pages-basic-information' }">
-      <button class="btn btn--primary" type="submit" :disabled="$v.$anyError">
+    <slot v-if="!noActions" name="actions">
+      <button
+        class="btn btn--primary mt-5"
+        type="submit"
+        :disabled="$v.$anyError"
+      >
         {{ $t("workflow.submit") }}
       </button>
-    </WorkflowActions>
+    </slot>
   </form>
 </template>
 
 <script>
-import { mapState } from "vuex";
 import { required, email } from "vuelidate/lib/validators";
-import WorkflowActions from "@/components/WorkflowActions";
 import TextField from "@/components/TextField";
 import Checkbox from "@/components/Checkbox";
 import LinkIcon from "vue-material-design-icons/Link";
 
 export default {
-  name: "WorkflowBasicInformation",
+  name: "TermsForm",
   components: {
-    WorkflowActions,
     TextField,
     Checkbox,
     LinkIcon
   },
+  props: {
+    noActions: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data: () => ({
+    email: "",
+    confirmed: false
+  }),
   validations: {
     email: {
       required,
@@ -67,31 +78,12 @@ export default {
     }
   },
   computed: {
-    ...mapState("workflow", {
-      basicInformation: "basicInformation"
-    }),
-    email: {
-      get() {
-        return this.$store.state.workflow.terms.email;
-      },
-      set(value) {
-        this.$store.commit("workflow/setTermsEmail", value);
-      }
-    },
     emailErrors() {
       const errors = [];
       if (!this.$v.email.$dirty) return errors;
       !this.$v.email.required && errors.push(this.$t("validation.required"));
       !this.$v.email.email && errors.push(this.$t("validation.email"));
       return errors;
-    },
-    confirmed: {
-      get() {
-        return this.$store.state.workflow.terms.confirmed;
-      },
-      set(value) {
-        this.$store.commit("workflow/setTermsConfirmed", value);
-      }
     },
     confirmedErrors() {
       const errors = [];
@@ -101,26 +93,17 @@ export default {
       return errors;
     }
   },
-  created() {
-    if (this.basicInformation.validationErrors)
-      return this.$router.push({
-        name: "workflow-pages-basic-information",
-        params: { locale: this.$i18n.locale }
-      });
-  },
   methods: {
-    validateAndSubmit() {
+    submitForm() {
       this.$v.$touch();
       if (this.$v.$invalid) {
-        this.$store.commit("workflow/setTermsValidationErrors", true);
+        return false;
       } else {
-        this.$store.commit("workflow/setTermsValidationErrors", false);
-        this.$router.push({
-          name: "workflow-pages-profile",
-          params: {
-            locale: this.$i18n.locale
-          }
+        this.$emit("submit", {
+          email: this.email,
+          confirmed: this.confirmed
         });
+        return true;
       }
     }
   }
