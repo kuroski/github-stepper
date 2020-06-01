@@ -51,6 +51,7 @@
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* NATIVE ELEMENTS */
 html {
   font-family: Inter var, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI,
     Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
@@ -67,6 +68,34 @@ html {
   }
 }
 
+h1,
+h2,
+h3,
+h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+a {
+  color: var(--color-blue-600);
+  transition-property: var(--transition-all);
+  transition-duration: var(--duration-300);
+  transition-timing-function: var(--ease-in-out);
+}
+
+a:visited {
+  color: var(--color-purple-600);
+}
+
+a:hover {
+  color: var(--color-blue-800);
+}
+
+label {
+  cursor: pointer;
+}
+
+/* HELPERS */
 .rounded {
   border-radius: 0.25rem;
 }
@@ -95,33 +124,6 @@ html {
 
 .ml-2 {
   margin-left: var(--space-2);
-}
-
-h1,
-h2,
-h3,
-h4 {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-a {
-  color: var(--color-blue-600);
-  transition-property: var(--transition-all);
-  transition-duration: var(--duration-300);
-  transition-timing-function: var(--ease-in-out);
-}
-
-a:visited {
-  color: var(--color-purple-600);
-}
-
-a:hover {
-  color: var(--color-blue-800);
-}
-
-label {
-  cursor: pointer;
 }
 
 .btn {
@@ -160,4 +162,83 @@ label {
 
 .btn--secondary:hover {
   background-color: var(--color-blue-200);
+}
+
+/* ANIMATIONS */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.15s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.animated {
+  overflow-x: hidden;
+  animation-duration: 0.15s;
+  animation-fill-mode: both;
+}
+
+.fadeInLeft {
+  animation-name: fadeInLeft;
+}
+
+.fadeInRight {
+  animation-name: fadeInRight;
+}
+
+.fadeOutLeft {
+  animation-name: fadeOutLeft;
+}
+
+.fadeOutRight {
+  animation-name: fadeOutRight;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-2%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translate3d(2%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeOutLeft {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(-2%, 0, 0);
+  }
+}
+
+@keyframes fadeOutRight {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(2%, 0, 0);
+  }
 }

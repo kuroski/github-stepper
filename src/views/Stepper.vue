@@ -7,6 +7,7 @@
     step-size="xs"
     color="var(--color-blue-700)"
     error-color="var(--color-red-600)"
+    transition="fade"
   >
     <template #title><div></div></template>
     <template #footer="props">
@@ -121,11 +122,28 @@ export default {
   padding: 0;
 }
 
+.stepper >>> .wizard-tab-container {
+  overflow-x: hidden;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+  animation-name: fade;
+}
+
 .stepper >>> .wizard-tab-content {
   padding: var(--space-10) var(--space-8);
 }
 
 .stepper >>> .wizard-card-footer {
   padding: 0 var(--space-8);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 </style>

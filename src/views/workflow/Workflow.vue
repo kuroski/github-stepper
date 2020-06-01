@@ -1,7 +1,15 @@
 <template>
   <div class="workflow shadow rounded-lg">
     <WorkflowWizard :steps="steps" />
-    <router-view class="workflow__content" />
+
+    <transition
+      :enter-active-class="enterAnimation"
+      :leave-active-class="leaveAnimation"
+      mode="out-in"
+      appear
+    >
+      <router-view class="workflow__content" />
+    </transition>
   </div>
 </template>
 
@@ -14,11 +22,21 @@ export default {
   components: {
     WorkflowWizard
   },
+  data: () => ({
+    enterAnimation: "",
+    leaveAnimation: ""
+  }),
   computed: {
     ...mapState("workflow", {
       basicInformation: "basicInformation",
       terms: "terms"
     }),
+    currentPageIndex() {
+      return this.steps.findIndex(step => this.$route.name === step.link);
+    },
+    previousPageIndex() {
+      return this.steps.findIndex(step => this.$route.name === step.link);
+    },
     steps() {
       return [
         {
@@ -48,6 +66,16 @@ export default {
             this.$route.name !== "workflow-pages-profile"
         }
       ];
+    }
+  },
+  watch: {
+    $route(to, from) {
+      const toIndex = this.steps.findIndex(step => to.name === step.link);
+      const fromIndex = this.steps.findIndex(step => from.name === step.link);
+      this.enterAnimation =
+        fromIndex < toIndex ? "animated fadeInLeft" : "animated fadeInRight";
+      this.leaveAnimation =
+        fromIndex > toIndex ? "animated fadeOutLeft" : "animated fadeOutRight";
     }
   }
 };
