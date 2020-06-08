@@ -1,4 +1,4 @@
-import { renderWithDependencies, flushPromises } from "@unit/helpers";
+import { renderWithDependencies } from "@unit/helpers";
 import { fireEvent } from "@testing-library/vue";
 import TermsForm from "@/components/TermsForm";
 
